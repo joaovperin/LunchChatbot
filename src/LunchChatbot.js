@@ -2,12 +2,8 @@
 const builder = require('botbuilder');
 const restify = require('restify');
 
-function createBot(connector){
-    // Listen and answer the same message
-    return new builder.UniversalBot(connector, function (session) {
-        session.send("-> You said: %s <-", session.message.text);
-    });
-}
+// Chatbot dependencies
+const UniversalBot = require('./bot/universal-bot.js');
 
 // Exports the app
 module.exports = (() => {
@@ -18,7 +14,7 @@ module.exports = (() => {
     
     if (isDevelopment) {
         const connector = new builder.ConsoleConnector().listen();
-        var bot = createBot(connector);
+        var bot = UniversalBot.createBot(connector);
     } else {
         // Setup Restify Server
         const server = restify.createServer();
@@ -33,7 +29,7 @@ module.exports = (() => {
         
         // Listen for messages from users 
         server.post('/api/messages', connector.listen());
-        var bot = createBot(connector);
+        var bot = UniversalBot.createBot(connector);
     }
     
     // External functions to export
