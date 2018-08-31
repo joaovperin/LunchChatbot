@@ -1,0 +1,28 @@
+{
+  "name": "lunch-chatbot",
+  "version": "1.0.0",
+  "description": "A simple Skype chatbot to manage lunch places and cars while at work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaovperin/LunchChatbot.git"
+  },
+  "keywords": [
+    "skype",
+    "chatbot",
+    "lunch"
+  ],
+  "author": "joaovperin",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/joaovperin/LunchChatbot/issues"
+  },
+  "homepage": "https://github.com/joaovperin/LunchChatbot#readme",
+  "dependencies": {
+    "botbuilder": "^3.15.0",
+    "restify": "^7.2.1"
+  }
+}
