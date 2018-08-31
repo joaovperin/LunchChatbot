@@ -4,7 +4,8 @@
   "description": "A simple Skype chatbot to manage lunch places and cars while at work.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "azure-publish": "node publish.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,11 @@
   "homepage": "https://github.com/joaovperin/LunchChatbot#readme",
   "dependencies": {
     "botbuilder": "^3.15.0",
+    "botbuilder-azure": "^3.0.4",
     "restify": "^7.2.1"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "zip-folder": "^1.0.0"
   }
 }
