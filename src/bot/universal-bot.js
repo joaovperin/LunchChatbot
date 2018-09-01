@@ -1,30 +1,29 @@
 // Requires the dependencies
 const builder = require('botbuilder');
-const botbuilder_azure = require("botbuilder-azure");
+const azureBotBuilder = require("botbuilder-azure");
+
+// Config the routes
+const routerService = require("./services/router.service");
+const dialogService = require("./services/dialog.service");
 
 // Exports the app
 module.exports = (() => {
 
     function createBot(connector) {
-        const bot = new builder.UniversalBot(connector);
+        const bot = new builder.UniversalBot(connector, dialogService.create());
+
         // Setup storage
         var tableName = 'botdata';
-        var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
-        var tableStorage = new botbuilder_azure.AzureBotStorage({
+        var azureTableClient = new azureBotBuilder.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
+        var tableStorage = new azureBotBuilder.AzureBotStorage({
             gzipData: false
         }, azureTableClient);
 
         // Set storage and listen to root
         var st = bot.get('storage');
         bot.set('storage', tableStorage); // Comment this to make it run locally
-        bot.dialog('/', responseService);
 
-        return bot;
-    }
-
-    // Service function to answer
-    function responseService(session) {
-        session.send("-> You said: %s <-", session.message.text);
+        return routerService(bot);
     }
 
     // External functions to export
